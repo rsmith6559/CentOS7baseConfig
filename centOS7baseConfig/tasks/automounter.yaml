@@ -1,0 +1,38 @@
+---
+
+# set up automount for user home directories
+
+- name: set up automount for user home directories
+  yum:
+    name: autofs
+    state: present
+
+- name: enable autofs
+  systemd:
+    name: autofs
+    enabled: yes
+
+- name: start autofs
+  systemd:
+    name: autofs
+    state: started
+
+- name: setup home.autofs
+  copy:
+    src: homes.autofs.j2
+    dest: /etc/auto.master.d/homes.autofs
+    owner: root
+    group: wheel
+    mode: 0644
+  notify: restart autofs
+
+- name: setup auto.home
+  copy:
+    src: auto.homes.j2
+    dest: /etc/auto.master.d/auto.homes
+    owner: root
+    group: wheel
+    mode: 0644
+  notify: restart autofs
+
+...

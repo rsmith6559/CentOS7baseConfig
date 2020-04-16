@@ -1,0 +1,12 @@
+---
+
+# make boot messages more verbose
+
+- name: make boot messages more verbose
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^(.*) rghb quiet$'
+    line: '\1'
+    backrefs: yes
+
+...

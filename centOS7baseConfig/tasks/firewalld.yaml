@@ -1,0 +1,83 @@
+---
+
+#  default configure firewalld
+
+- name: rm from dmz zone
+  firewalld:
+    zone: dmz
+    service: ssh
+    permanent: yes
+    state: disabled
+  notify: reload firewalld
+
+- name: rm from external zone
+  firewalld:
+    zone: external
+    service: ssh
+    permanent: yes
+    state: disabled
+  notify: reload firewalld
+
+- name: rm from home zone
+  firewalld:
+    zone: home
+    service: "{{ item }}"
+    permanent: yes
+    state: disabled
+  loop:
+    - dhcpv6-client
+    - mdns
+    - ipp-client
+    - samba-client
+    - ssh
+  notify: reload firewalld
+
+- name: add eth0 to internal zone
+  firewalld:
+    zone: internal
+    interface: eth0
+    permanent: yes
+    state: enabled
+  notify: reload firewalld
+
+- name: rm from internal zone
+  firewalld:
+    zone: internal
+    service: "{{ item }}"
+    permanent: yes
+    state: disabled
+  loop:
+    - dhcpv6-client
+    - mdns
+    - samba-client
+    - ipp-client
+  notify: reload firewalld
+
+- name: rm from public zone
+  firewalld:
+    zone: public
+    service: "{{ item }}"
+    permanent: yes
+    state: disabled
+  loop:
+    - dhcpv6-client
+    - ssh
+  notify: reload firewalld
+
+- name: rm dhcpv6-client from work zone
+  firewalld:
+    zone: work
+    service: "{{ item }}"
+    permanent: yes
+    state: disabled
+  loop:
+    - dhcpv6-client
+    - ipp-client
+    - ssh
+  notify: reload firewalld
+
+- name: set internal zone as default
+  command: /bin/firewall-cmd --set-default-zone=internal
+  notify: reload firewalld
+
+...

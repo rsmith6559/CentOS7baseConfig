@@ -1,0 +1,10 @@
+---
+
+# restart autofs daemon
+
+- name: restart autofs
+  systemd:
+    name: autofs
+    state: restarted
+
+...

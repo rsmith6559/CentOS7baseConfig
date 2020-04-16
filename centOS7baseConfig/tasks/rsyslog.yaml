@@ -1,0 +1,23 @@
+---
+
+# config rsyslog
+
+- name: add template to rsyslog.conf
+  copy:
+    src: files/rsyslog.conf.j2
+    dest: /etc/rsyslog.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart rsyslog
+
+- name: configure warnings and above go to syslog server
+  copy:
+    src: files/remote-logging.conf.j2
+    dest: /etc/rsyslog.d/remote-logging.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart rsyslog
+
+...

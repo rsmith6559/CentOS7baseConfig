@@ -1,0 +1,10 @@
+---
+
+#  restart rsyslog
+
+- name: restart rsyslog
+  systemd:
+    name: rsyslog
+    state: restarted
+
+...

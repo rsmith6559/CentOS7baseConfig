@@ -1,0 +1,10 @@
+---
+
+# reboot the machine to run the new kernel
+
+  - name: reboot
+    reboot:
+      post_reboot_delay: 30
+
+...
+

@@ -1,0 +1,10 @@
+---
+
+# handlers
+
+- import_tasks: automounter.yaml
+- import_tasks: firewalld.yaml
+- import_tasks: rsyslog.yaml
+- import_tasks: updates.yaml
+
+...

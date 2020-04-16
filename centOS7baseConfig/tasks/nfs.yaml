@@ -1,0 +1,10 @@
+---
+
+# install nfs client
+
+- name: install nfs client
+  yum:
+    name: nfs-utils
+    state: present
+
+...

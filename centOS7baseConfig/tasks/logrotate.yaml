@@ -1,0 +1,16 @@
+---
+
+# change /etc/logrotate.conf to not use dates
+
+- name: change /etc/logrotate.com to not use dates
+  lineinfile:
+    path: /etc/logrotate.conf
+    regexp: "^dateext"
+    line: "# dateext"
+
+- name: rm httpd file from /etc/logrotate.d
+  file:
+    path: /etc/logrotate.d/httpd
+    state: absent
+
+...

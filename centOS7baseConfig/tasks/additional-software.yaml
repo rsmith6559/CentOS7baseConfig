@@ -1,0 +1,16 @@
+---
+
+# install additional software
+
+- name: install additional software
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - deltarpm
+    - net-tools
+    - setroubleshoot-server
+
+...
+

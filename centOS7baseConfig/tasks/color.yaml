@@ -1,0 +1,26 @@
+---
+
+# turn off color
+
+- name: turn off DIR_COLORSs
+  lineinfile:
+    path: "/etc/{{ item }}"
+    regexp: 'COLOR tty'
+    line: 'COLOR none'
+  loop:
+    - DIR_COLORS
+    - DIR_COLORS.256color
+    - DIR_COLORS.lightbgcolor
+
+- name: turn off aliases in /etc/profile.d
+  lineinfile:
+    path: "/etc/profile.d/{{ item }}"
+    regexp: '(^[[:space:]]*)(alias.*)'
+    line: '\1#\2'
+    backrefs: yes
+  loop:
+    - colorls.sh
+    - colorgrep.sh
+
+...
+

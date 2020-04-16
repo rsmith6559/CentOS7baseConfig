@@ -1,0 +1,14 @@
+---
+
+# install /etc/hosts
+
+- name: install /etc/hosts
+  copy:
+    src: files/hosts.j2
+    dest: /etc/hosts
+    force: yes
+    owner: root
+    group: root
+    mode: 0644
+
+...

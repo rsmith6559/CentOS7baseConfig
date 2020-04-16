@@ -1,0 +1,22 @@
+---
+
+# testing various parts of ansible
+
+- name: sequence
+  debug:
+    msg: "{{ item }}"
+  loop: "{{ range( 10 ) | list }}"
+
+- name: weird loop
+  debug:
+    msg: "{{ [ 2,3,3,2,6,7 ] | unique }}"
+
+- name: see --get-default-zone answer
+  command: /bin/firewall-cmd --get-default-zone
+  register: default_zone
+
+- name: print check results
+  debug:
+    var: default_zone.stdout
+
+...

@@ -1,0 +1,30 @@
+---
+
+# update everything play
+
+- name: update everything but the kernel
+  yum:
+    name: '*'
+    state: latest
+    exclude: kernel
+
+- name: check for a kernel update?
+  yum:
+    list: updates
+    update_only: yes
+  register: kernel_update
+
+#- name: print check results
+#  debug:
+#    var: kernel_update
+
+- block:
+  - name: update kernel
+    yum:
+      name: kernel
+      state: latest
+    notify: reboot
+  when: kernel_update.results != []
+
+...
+

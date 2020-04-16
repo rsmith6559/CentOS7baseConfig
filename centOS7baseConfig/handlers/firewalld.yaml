@@ -1,0 +1,8 @@
+---
+
+# reload firewalld handler
+
+- name: reload firewalld
+  command: /bin/firewall-cmd --reload
+
+...

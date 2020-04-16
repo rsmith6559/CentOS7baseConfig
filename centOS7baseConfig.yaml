@@ -1,0 +1,13 @@
+---
+
+- name: basic configuration of a new CentOS7 machine
+
+  hosts: testGroup
+
+  gather_facts: no
+
+  roles:
+    - centOS7baseConfig
+
+...
+
