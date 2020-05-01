@@ -7,16 +7,13 @@
     name: '*'
     state: latest
     exclude: kernel
+  register: updates
 
 - name: check for a kernel update?
   yum:
     list: updates
     update_only: yes
   register: kernel_update
-
-#- name: print check results
-#  debug:
-#    var: kernel_update
 
 - block:
   - name: update kernel
@@ -25,6 +22,22 @@
       state: latest
     notify: reboot
   when: kernel_update.results != []
+
+- block:
+  - name: write swinv to ansible controller
+    shell:
+      cmd: rpm -qa > ~/{{ ansible_facts.hostname }}
+      warn: false
+
+  - fetch:
+      src: ~/{{ ansible_facts.hostname }}
+      dest: /home/swinv/
+      flat: yes
+
+  - file:
+      path: ~/{{ ansible_facts.hostname | quote }}
+      state: absent
+  when: updates.changed == "true" or kernel_update.results != []
 
 ...
 
