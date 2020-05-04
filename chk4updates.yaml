@@ -1,0 +1,19 @@
+---
+
+# updates check
+
+- name: check for updates
+  hosts: vms
+
+  tasks:
+    - name: query for updates 
+      yum:
+        list: updates
+      register: result
+
+    - name: output results 
+      debug:
+        var: result.results
+
+...
+
