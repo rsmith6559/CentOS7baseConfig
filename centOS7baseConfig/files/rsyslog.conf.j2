@@ -56,7 +56,7 @@ $IMJournalStateFile imjournal.state
 *.warning;mail.none;authpriv.none;cron.none             /var/log/messages;TraditionalFormatWithPriorityFacility
 
 # The authpriv file has restricted access.
-authpriv.warn                                           /var/log/secure;TraditionalFormatWithPriorityFacility
+authpriv.notice                                         /var/log/secure;TraditionalFormatWithPriorityFacility
 
 # Log all the mail messages in one place.
 mail.*                                                  -/var/log/maillog
