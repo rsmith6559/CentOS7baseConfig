@@ -3,7 +3,7 @@
 # updates check
 
 - name: check for updates
-  hosts: vms
+  hosts: all
 
   tasks:
     - name: query for updates 
