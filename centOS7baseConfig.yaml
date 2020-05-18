@@ -4,8 +4,6 @@
 
   hosts: all
 
-  gather_facts: yes
-
   roles:
     - centOS7baseConfig
 
