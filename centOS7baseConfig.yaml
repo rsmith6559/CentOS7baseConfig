@@ -2,9 +2,9 @@
 
 - name: basic configuration of a new CentOS7 machine
 
-  hosts: testGroup
+  hosts: all
 
-  gather_facts: no
+  gather_facts: yes
 
   roles:
     - centOS7baseConfig

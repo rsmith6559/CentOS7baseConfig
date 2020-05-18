@@ -2,16 +2,16 @@
 
 # initial config of a new CentOS7 machine
 
-- import_tasks: grub.yaml
-- import_tasks: issue.yaml
-- import_tasks: firewalld.yaml
-- import_tasks: hosts.yaml
-- import_tasks: additional-software.yaml
+#- import_tasks: grub.yaml
+#- import_tasks: issue.yaml
+#- import_tasks: firewalld.yaml
+#- import_tasks: hosts.yaml
+#- import_tasks: additional-software.yaml
 - import_tasks: updates.yaml
-- import_tasks: nfs.yaml
-- import_tasks: automounter.yaml
-- import_tasks: logrotate.yaml
-- import_tasks: rsyslog.yaml
-- import_tasks: color.yaml
+#- import_tasks: nfs.yaml
+#- import_tasks: automounter.yaml
+#- import_tasks: logrotate.yaml
+#- import_tasks: rsyslog.yaml
+#- import_tasks: color.yaml
 
 ...
