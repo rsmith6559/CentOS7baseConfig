@@ -37,7 +37,7 @@
   - file:
       path: ~/{{ ansible_facts.hostname | quote }}
       state: absent
-  when: updates.changed == "true" or kernel_update.results != []
+  when: updates.changed == true or kernel_update.results != []
 
 ...
 
