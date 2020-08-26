@@ -23,20 +23,7 @@
     notify: reboot
   when: kernel_update.results != []
 
-- block:
-  - name: write swinv to ansible controller
-    shell:
-      cmd: rpm -qa > ~/{{ ansible_facts.hostname }}
-      warn: false
-
-  - fetch:
-      src: ~/{{ ansible_facts.hostname }}
-      dest: "/home/swinv/{{ ansible_distribution_major_version }}/"
-      flat: yes
-
-  - file:
-      path: ~/{{ ansible_facts.hostname | quote }}
-      state: absent
+- import_tasks: swinv.yaml
   when: updates.changed == true or kernel_update.results != []
 
 ...

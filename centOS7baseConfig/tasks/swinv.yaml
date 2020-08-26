@@ -1,0 +1,22 @@
+---
+
+# SoftWare InVentory
+
+- name: write swinv on remote
+  shell:
+    cmd: rpm -qa > ~/{{ ansible_facts.hostname }}
+    warn: false
+
+- name: fetch file to ansible controller
+  fetch:
+    src: ~/{{ ansible_facts.hostname }}
+    dest: "/home/swinv/{{ ansible_distribution_major_version }}/"
+    flat: yes
+
+- name: clean up remote
+  file:
+    path: ~/{{ ansible_facts.hostname | quote }}
+    state: absent
+
+...
+
